@@ -1,14 +1,16 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
-from ..dependencies import get_settings
+
+from ..config import Settings
 
 Base = declarative_base()
 
 
 def get_engine():
-    settings = get_settings()
+    settings = Settings()
     return create_engine(settings.postgres_url, future=True)
 
 
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=get_engine())
+Engine = get_engine()
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=Engine)
 
