@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-support-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ai-support-api
+  template:
+    metadata:
+      labels:
+        app: ai-support-api
+    spec:
+      containers:
+        - name: api
+          image: ai-support-api:latest
+          ports:
+            - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ai-support-api-svc
+spec:
+  selector:
+    app: ai-support-api
+  ports:
+    - port: 80
+      targetPort: 8000
+
