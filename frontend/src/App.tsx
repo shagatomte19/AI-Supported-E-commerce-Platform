@@ -1,10 +1,10 @@
 import React from "react";
 import { ChatWidget } from "./components/ChatWidget";
+import "./App.css";
 
 const App: React.FC = () => {
   return (
-    <div className="app">
-      <h1>AI Support</h1>
+    <div className="min-h-screen bg-gray-50">
       <ChatWidget />
     </div>
   );

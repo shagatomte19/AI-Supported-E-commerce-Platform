@@ -1,6 +1,21 @@
 import React from "react";
 
-export const TypingIndicator: React.FC = () => {
-  return <div>Agent is typing...</div>;
+interface TypingIndicatorProps {
+  isVisible: boolean;
+}
+
+export const TypingIndicator: React.FC<TypingIndicatorProps> = ({ isVisible }) => {
+  if (!isVisible) return null;
+
+  return (
+    <div className="flex items-center space-x-1 px-4 py-2 text-gray-500">
+      <div className="flex space-x-1">
+        <div className="h-2 w-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }}></div>
+        <div className="h-2 w-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "150ms" }}></div>
+        <div className="h-2 w-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "300ms" }}></div>
+      </div>
+      <span className="text-sm ml-2">AI is typing...</span>
+    </div>
+  );
 };
 
